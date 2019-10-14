@@ -1,10 +1,7 @@
 package com.sukanth.controllers;
 
 import com.sukanth.Beans.PersonBean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,4 +25,13 @@ public class PersonController {
         personBean.add(personBeanBuilder);
         return personBeanBuilder;
     }
+
+    @RequestMapping(value = "/persons/delete",method = RequestMethod.DELETE)
+    public void deletePerson(@RequestParam int id){
+        PersonBean bean = personBean.iterator().next();
+        if(bean.getId() == id){
+            personBean.remove(bean);
+        }
+    }
+
 }
